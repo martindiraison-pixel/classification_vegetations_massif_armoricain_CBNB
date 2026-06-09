@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="CBNB Végétations">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6f8f5"/>
+      <stop offset="1" stop-color="#d8ead9"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#72b66f"/>
+      <stop offset="1" stop-color="#1f7a3b"/>
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="96" fill="url(#bg)"/>
+  <path d="M132 336 C 108 238 184 126 360 112 C 366 256 280 356 132 336 Z" fill="url(#leaf)" stroke="#17462c" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M154 318 C 226 274 282 216 338 130" fill="none" stroke="#f7fff5" stroke-width="18" stroke-linecap="round"/>
+  <path d="M216 266 L184 204 M252 230 L224 174 M286 190 L262 146" fill="none" stroke="#e6f6e4" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="356" cy="314" r="22" fill="#2f6f4e"/>
+  <circle cx="408" cy="256" r="18" fill="#2f6f4e"/>
+  <circle cx="408" cy="372" r="18" fill="#2f6f4e"/>
+  <path d="M374 314 H402 M408 274 V354" fill="none" stroke="#2f6f4e" stroke-width="12" stroke-linecap="round"/>
+</svg>
