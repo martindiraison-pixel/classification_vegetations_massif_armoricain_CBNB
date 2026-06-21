@@ -1,15 +1,15 @@
 {
   "name": "Classification des végétations CBNB",
   "short_name": "CBNB Végétations",
-  "description": "Application autonome de consultation de la classification physionomique et phytosociologique des végétations du CBNB, avec arborescence, fiches descriptives, cartes régionales et gradients d’Ellenberg.",
+  "description": "Application autonome de consultation de la classification physionomique et phytosociologique des végétations du CBNB, avec page d’accueil simplifiée, arborescence, fiches descriptives, cartes régionales et gradients d’Ellenberg.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "lang": "fr-FR",
-  "theme_color": "#2f6f4e",
-  "background_color": "#f6f8f5",
+  "theme_color": "#b85f3f",
+  "background_color": "#eee8dc",
   "categories": [
     "education",
     "reference",

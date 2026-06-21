@@ -69,3 +69,28 @@ Application HTML autonome de consultation de la classification physionomique et 
 - suppression des mentions « Champ source » ;
 - liens externes de recherche Tela Botanica sur les noms d’espèces structurés ;
 - cache PWA incrémenté en `cbnb-vegetations-pwa-v1-2`.
+
+
+## V1.4 ajustée
+
+- page d’accueil affichée par défaut au lieu de la première fiche de l’arborescence ;
+- aperçu de la première page du PDF source CBNB dans la page d’accueil ;
+- lien direct vers le PDF source officiel du CBNB ;
+- affichage discret de la version applicative ;
+- bouton « Mise à jour » pour vider le cache PWA local, désinscrire l’ancien service worker et recharger la dernière version ;
+- charte graphique modernisée : palette vert CBNB, fond papier, accueil type couverture de cahier technique ;
+- cache PWA incrémenté en `cbnb-vegetations-pwa-v1-4`.
+
+## V1.5
+
+- Page d’accueil simplifiée.
+- Retrait de l’espace « Première page » et de la synthèse du contenu applicatif.
+- Conservation du lien vers le PDF source et du bloc discret version / mise à jour.
+- Cache PWA incrémenté en `cbnb-vegetations-pwa-v1-5`.
+
+
+## V1.6
+
+- Retrait du sous-titre redondant de la page d’accueil : « de Basse-Normandie, Bretagne et Pays de la Loire ».
+- Conservation du titre complet unique.
+- Cache PWA incrémenté en `cbnb-vegetations-pwa-v1-6`.
