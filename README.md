@@ -50,3 +50,22 @@ Application HTML autonome de consultation de la classification physionomique et 
 - Le service worker met en cache les ressources applicatives principales.
 - Le fonctionnement hors ligne dépend du premier chargement complet depuis une URL HTTPS.
 - Après modification de `index.html`, augmenter éventuellement la constante `CACHE_NAME` dans `service-worker.js` pour forcer la mise à jour du cache.
+
+
+## Ajustements V1.1
+
+- Clic dans l’arborescence : sélection de la fiche sans défilement automatique vers le panneau de détail.
+- Affichage par défaut : classification complète.
+- Libellé corrigé : `Macrotype` → `Macro-groupe`.
+- Gradients d’Ellenberg : les espèces des niveaux inférieurs sont compilées pour les rangs de Division à Association ; les rangs parents de Division restent inchangés.
+- Cartes régionales : contours SVG affinés.
+- Cache PWA incrémenté (`cbnb-vegetations-pwa-v1-1`).
+
+## V1.2 ajustée
+
+- affichage du rang en toutes lettres dans les fiches ;
+- retrait des badges techniques ID, parent, page et source dans les fiches ;
+- masquage automatique des rubriques vides ;
+- suppression des mentions « Champ source » ;
+- liens externes de recherche Tela Botanica sur les noms d’espèces structurés ;
+- cache PWA incrémenté en `cbnb-vegetations-pwa-v1-2`.

@@ -68,6 +68,11 @@ input[type="search"], select { width: 100%; border: 1px solid var(--line); borde
 .muted { color: var(--muted); }
 .species-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
 .species-chip { border: 1px solid #d9e5da; background: #f7fbf7; border-radius: 999px; padding: 6px 9px; font-style: italic; font-size: 13px; }
+
+.species-link { color: var(--accent2); text-decoration: none; font-style: italic; text-underline-offset: 2px; }
+.species-link:hover, .species-link:focus { text-decoration: underline; }
+.species-chip .species-link { color: inherit; }
+.rank-full strong { font-weight: 900; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { border-bottom: 1px solid var(--line); padding: 8px 9px; text-align: left; vertical-align: top; }
@@ -219,9 +224,9 @@ mark { background: #fff1a6; color: inherit; border-radius: 3px; padding: 0 .1em;
 .geo-map { margin-bottom:10px; }
 .geo-map-card { display:grid; grid-template-columns:minmax(260px, 1.2fr) minmax(190px, .8fr); gap:14px; align-items:center; }
 .geo-region-svg { width:100%; max-width:560px; display:block; margin:auto; }
-.geo-region-shape { stroke:#1f2a24; stroke-width:8; vector-effect:non-scaling-stroke; transition:filter .12s ease; }
+.geo-region-shape { stroke:#1f2a24; stroke-width:2.25; vector-effect:non-scaling-stroke; transition:filter .12s ease; }
 .geo-region-shape:hover { filter:brightness(.98) saturate(1.04); }
-.geo-region-outline { fill:none; stroke:rgba(31,42,36,.38); stroke-width:8; vector-effect:non-scaling-stroke; pointer-events:none; }
+.geo-region-outline { fill:none; stroke:rgba(31,42,36,.30); stroke-width:1.75; vector-effect:non-scaling-stroke; pointer-events:none; }
 .geo-region-marker { font-size:240px; font-weight:950; text-anchor:middle; dominant-baseline:central; paint-order:stroke; stroke:#fff; stroke-width:30px; stroke-linejoin:round; }
 .geo-marker-question { fill:#14532d; }
 .geo-marker-alert { fill:#dc2626; }
@@ -252,7 +257,7 @@ mark { background: #fff1a6; color: inherit; border-radius: 3px; padding: 0 .1em;
 <header class="app-header"><div class="header-inner"><div class="brand"><h1>Classification physionomique et phytosociologique des végétations (CBNB)</h1><p>Application HTML autonome : arborescence, fiches descriptives, gradients d’Ellenberg et comparateur.</p></div><nav class="header-actions" aria-label="Modules"><button class="tab-button active" data-view="explore">Explorer</button><button class="tab-button" data-view="compare">Comparer <span id="compareCount" class="badge">0</span></button></nav></div></header>
 <main class="container">
   <section id="exploreView" class="explore-view active"><div class="workspace">
-    <aside class="panel sidebar" aria-label="Navigation de la classification"><div class="search-block"><div><div class="sidebar-title">Arborescence de classification</div><div class="meta-line"><span id="globalMeta"></span></div></div><div class="search-row"><input id="searchInput" type="search" placeholder="Rechercher : prairie humide, Salicornia, As…" autocomplete="off" /><button id="clearSearch" class="secondary" title="Réinitialiser la recherche">Effacer</button></div><div class="filters"><select id="rankFilter" aria-label="Filtrer par rang"></select><select id="speciesFilter" aria-label="Filtrer par disponibilité Ellenberg"><option value="all">Toutes les fiches</option><option value="species">Avec espèces citées</option><option value="ellenberg">Avec moyennes Ellenberg</option><option value="geo">Avec géographie</option></select></div><div class="tree-tools"><select id="rootFilter" aria-label="Choisir une racine de classification"></select><select id="depthFilter" aria-label="Profondeur d’affichage"><option value="4" selected>Division · 4 niveaux</option><option value="5">Macrotype · 5 niveaux</option><option value="6">Groupe · 6 niveaux</option><option value="7">Sous-groupe · 7 niveaux</option><option value="8">Alliance · 8 niveaux</option><option value="9">Sous-alliance · 9 niveaux</option><option value="10">Association · 10 niveaux</option><option value="99">Complète</option></select></div><div class="tree-actions"><button id="expandVisible" class="secondary" type="button">Déplier visible</button><button id="collapseTree" class="secondary" type="button">Replier</button></div><div id="rankLegend" class="rank-legend" aria-label="Légende des rangs"></div><div class="meta-line"><span id="searchMeta"></span></div></div><div id="resultsPanel" class="results"></div><div class="tree-wrap"><ul id="tree" class="tree"></ul></div></aside>
+    <aside class="panel sidebar" aria-label="Navigation de la classification"><div class="search-block"><div><div class="sidebar-title">Arborescence de classification</div><div class="meta-line"><span id="globalMeta"></span></div></div><div class="search-row"><input id="searchInput" type="search" placeholder="Rechercher : prairie humide, Salicornia, As…" autocomplete="off" /><button id="clearSearch" class="secondary" title="Réinitialiser la recherche">Effacer</button></div><div class="filters"><select id="rankFilter" aria-label="Filtrer par rang"></select><select id="speciesFilter" aria-label="Filtrer par disponibilité Ellenberg"><option value="all">Toutes les fiches</option><option value="species">Avec espèces citées</option><option value="ellenberg">Avec moyennes Ellenberg</option><option value="geo">Avec géographie</option></select></div><div class="tree-tools"><select id="rootFilter" aria-label="Choisir une racine de classification"></select><select id="depthFilter" aria-label="Profondeur d’affichage"><option value="4">Division · 4 niveaux</option><option value="5">Macro-groupe · 5 niveaux</option><option value="6">Groupe · 6 niveaux</option><option value="7">Sous-groupe · 7 niveaux</option><option value="8">Alliance · 8 niveaux</option><option value="9">Sous-alliance · 9 niveaux</option><option value="10">Association · 10 niveaux</option><option value="99" selected>Complète</option></select></div><div class="tree-actions"><button id="expandVisible" class="secondary" type="button">Déplier visible</button><button id="collapseTree" class="secondary" type="button">Replier</button></div><div id="rankLegend" class="rank-legend" aria-label="Légende des rangs"></div><div class="meta-line"><span id="searchMeta"></span></div></div><div id="resultsPanel" class="results"></div><div class="tree-wrap"><ul id="tree" class="tree"></ul></div></aside>
     <section class="panel content" id="detailPanel" aria-live="polite"></section>
   </div></section>
   <section id="compareView" class="compare-view"><div class="compare-grid"><aside class="panel compare-tools"><h2 style="margin:0 0 10px;font-size:20px;">Ajouter une végétation</h2><input id="compareSearch" type="search" placeholder="Rechercher une formation à comparer…" autocomplete="off" /><div id="compareSearchResults" class="add-results"></div><div class="footer-note">Le comparateur reprend les descriptions, espèces citées, géographie et synthèses Ellenberg des fiches sélectionnées.</div></aside><section class="panel compare-main" id="comparePanel"></section></div></section>
@@ -295,13 +300,13 @@ function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 function norm(s) { return String(s ?? '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
 function fmt(v, digits=1) { if (v === null || v === undefined || Number.isNaN(v)) return '—'; return Number.isInteger(v) ? String(v) : Number(v).toFixed(digits).replace('.', ','); }
 function compactText(s, max=220) { const t = String(s || '').replace(/\s+/g,' ').trim(); return t.length > max ? t.slice(0, max-1) + '…' : t; }
-function hasMean(item) { return METRICS.some(m => item.mean[m.key] !== null && item.mean[m.key] !== undefined); }
+function hasMean(item) { const d = displayItem(item); return METRICS.some(m => d.mean[m.key] !== null && d.mean[m.key] !== undefined); }
 function hasGeo(item) { return Boolean(item.geo); }
-function searchHaystack(item) { return norm([item.rank, item.name, item.sci, item.desc, item.speciesListed, item.geo, item.page, item.source, item.id, item.parentId, item.species.map(s => s.name).join(' ')].join(' | ')); }
+function searchHaystack(item) { const d = displayItem(item); return norm([item.rank, item.name, item.sci, item.desc, item.speciesListed, item.geo, item.page, item.source, item.id, item.parentId, d.species.map(s => s.name).join(' ')].join(' | ')); }
 function matchesFilters(item) {
   const rank = els.rankFilter.value; const availability = els.speciesFilter.value;
   if (rank !== 'all' && item.rank !== rank) return false;
-  if (availability === 'species' && item.species.length === 0) return false;
+  if (availability === 'species' && displayItem(item).species.length === 0) return false;
   if (availability === 'ellenberg' && !hasMean(item)) return false;
   if (availability === 'geo' && !hasGeo(item)) return false;
   const q = norm(els.searchInput.value).trim(); if (!q) return true;
@@ -312,7 +317,7 @@ function descendantsMatch(item) { if (matchesFilters(item)) return true; return 
 function pathTo(item) { const p = []; let current = item; const guard = new Set(); while (current && !guard.has(current.id)) { p.unshift(current); guard.add(current.id); current = current.parentId ? byId.get(current.parentId) : null; } return p; }
 function expandPath(item) { pathTo(item).forEach(x => expanded.add(x.id)); }
 const RANK_ORDER = ['CL','S-CL','F','D','M','G','S-G','AL','S-AL','As'];
-const RANK_LABELS = {CL:'Classe','S-CL':'Sous-classe',F:'Formation',D:'Division',M:'Macrotype',G:'Groupe','S-G':'Sous-groupe',AL:'Alliance','S-AL':'Sous-alliance',As:'Association'};
+const RANK_LABELS = {CL:'Classe','S-CL':'Sous-classe',F:'Formation',D:'Division',M:'Macro-groupe',G:'Groupe','S-G':'Sous-groupe',AL:'Alliance','S-AL':'Sous-alliance',As:'Association'};
 function rankSortValue(rank) {
   const i = RANK_ORDER.indexOf(rank);
   return i === -1 ? 999 : i;
@@ -320,8 +325,90 @@ function rankSortValue(rank) {
 function rankLabel(rank) {
   return RANK_LABELS[rank] || rank || 'Rang non renseigné';
 }
+function rankLabelRich(rank) {
+  const labels = {
+    CL:'<strong>Cl</strong>asse',
+    'S-CL':'<strong>S</strong>ous-<strong>cl</strong>asse',
+    F:'<strong>F</strong>ormation',
+    D:'<strong>D</strong>ivision',
+    M:'<strong>M</strong>acro-groupe',
+    G:'<strong>G</strong>roupe',
+    'S-G':'<strong>S</strong>ous-<strong>g</strong>roupe',
+    AL:'<strong>Al</strong>liance',
+    'S-AL':'<strong>S</strong>ous-<strong>al</strong>liance',
+    As:'<strong>As</strong>sociation'
+  };
+  return labels[rank] || esc(rankLabel(rank));
+}
+function telaBotanicaUrl(name) {
+  const q = String(name || '').trim();
+  return 'https://www.tela-botanica.org/page:eflore_bdtfx?type_nom=nom_scientifique&referentiel=bdtfx&niveau=2&module=recherche&action=rechercheSimple&submit=OK&nom=' + encodeURIComponent(q);
+}
+function speciesLink(name) {
+  const label = String(name || '').trim();
+  if (!label) return '';
+  return `<a class="species-link" href="${esc(telaBotanicaUrl(label))}" target="_blank" rel="noopener noreferrer" title="Rechercher ${esc(label)} sur Tela Botanica"><em>${esc(label)}</em></a>`;
+}
 function rankClass(rank) {
   return 'rank-' + String(rank || 'NA').replace(/[^A-Za-z0-9_-]/g, '_');
+}
+
+const COMPILED_SPECIES_MIN_RANK_INDEX = RANK_ORDER.indexOf('D');
+const compiledSpeciesCache = new Map();
+function shouldCompileSpecies(item) {
+  const i = rankSortValue(item && item.rank);
+  return i >= COMPILED_SPECIES_MIN_RANK_INDEX && i !== 999;
+}
+function speciesKey(name) {
+  return norm(name).replace(/\s+/g, ' ').trim();
+}
+function cloneSpecies(species) {
+  return { name: species.name, values: { ...(species.values || {}) } };
+}
+function addSpeciesToMap(map, species) {
+  if (!species || !species.name) return;
+  const key = speciesKey(species.name);
+  if (!key || map.has(key)) return;
+  map.set(key, cloneSpecies(species));
+}
+function computeSpeciesStats(speciesList) {
+  const mean = {}; const sd = {};
+  for (const metric of METRICS) {
+    const values = speciesList
+      .map(s => s.values ? s.values[metric.key] : null)
+      .filter(v => v !== null && v !== undefined && !Number.isNaN(Number(v)))
+      .map(Number);
+    if (!values.length) { mean[metric.key] = null; sd[metric.key] = null; continue; }
+    const avg = values.reduce((a,b) => a + b, 0) / values.length;
+    mean[metric.key] = avg;
+    if (values.length < 2) { sd[metric.key] = null; continue; }
+    const variance = values.reduce((a,b) => a + Math.pow(b - avg, 2), 0) / (values.length - 1);
+    sd[metric.key] = Math.sqrt(variance);
+  }
+  return { mean, sd };
+}
+function displayItem(item) {
+  if (!item || !shouldCompileSpecies(item)) return item;
+  if (compiledSpeciesCache.has(item.id)) return compiledSpeciesCache.get(item.id);
+  const speciesMap = new Map();
+  (item.species || []).forEach(s => addSpeciesToMap(speciesMap, s));
+  (children.get(item.id) || []).forEach(child => {
+    const d = displayItem(child);
+    (d.species || []).forEach(s => addSpeciesToMap(speciesMap, s));
+  });
+  const species = Array.from(speciesMap.values());
+  const stats = computeSpeciesStats(species);
+  const compiled = {
+    ...item,
+    species,
+    mean: stats.mean,
+    sd: stats.sd,
+    compiledSpecies: true,
+    compiledSpeciesFromDescendants: (children.get(item.id) || []).length > 0,
+    originalSpeciesCount: (item.species || []).length
+  };
+  compiledSpeciesCache.set(item.id, compiled);
+  return compiled;
 }
 function isTreeFiltered() {
   return Boolean(
@@ -413,8 +500,7 @@ function renderGeoMap(item, compact=false) {
   }).join('');
   const svg = `<svg class="geo-region-svg" viewBox="430 120 2620 2180" role="img" aria-label="Carte des statuts régionaux sur Basse-Normandie, Bretagne et Pays de la Loire">${defs}${paths}</svg>`;
   const legend = compact ? '' : `<div class="geo-status-list"><div class="geo-status-row"><span class="geo-swatch geo-fill-P"></span><span>Présent</span></div><div class="geo-status-row"><span class="geo-swatch geo-fill-NSR"></span><span>Présent historiquement, non signalé récemment</span></div><div class="geo-status-row"><span class="geo-swatch geo-fill-absent"></span><span>Absent</span></div><div class="geo-status-row"><span class="geo-swatch geo-fill-qP"></span><span>Probablement présent</span></div><div class="geo-status-row"><span class="geo-swatch geo-fill-q">?</span><span>À rechercher</span></div><div class="geo-status-row"><span class="geo-swatch geo-fill-error alert">!</span><span>Cité par erreur</span></div></div>`;
-  const source = compact ? '' : `<div class="geo-source geo-raw">Champ source : ${esc(item.geo)}</div>`;
-  return `<div class="geo-map"><div class="geo-map-card">${svg}<div class="geo-map-side">${legend}</div></div>${source}</div>`;
+  return `<div class="geo-map"><div class="geo-map-card">${svg}<div class="geo-map-side">${legend}</div></div></div>`;
 }
 
 function initFilters() {
@@ -478,11 +564,32 @@ function renderResults(totalMatches) {
   els.resultsPanel.innerHTML = `<div class="meta-line" style="margin-bottom:8px;">Résultats directs : ${totalMatches.toLocaleString('fr-FR')} · affichage des 35 premiers</div><div class="result-list">${matches.map(item => `<button class="result-card" data-select="${esc(item.id)}"><span class="result-title">${highlight(item.name)}</span><span class="meta-line"><span class="badge rank ${rankClass(item.rank)}">${esc(item.rank)}</span>${item.sci ? `<span>${highlight(item.sci)}</span>` : ''}${item.page ? `<span>p. ${esc(item.page)}</span>` : ''}</span><span class="result-excerpt">${highlight(compactText(item.desc || item.speciesListed || item.geo, 180))}</span></button>`).join('') || '<div class="empty">Aucun résultat direct.</div>'}</div>`;
 }
 function renderDetail() {
-  const item = byId.get(selectedId) || DATA[0]; history.replaceState(null, '', '#' + encodeURIComponent(item.id)); document.title = `${item.name} — Classification CBNB`;
+  const item = byId.get(selectedId) || DATA[0];
+  const viewItem = displayItem(item);
+  history.replaceState(null, '', '#' + encodeURIComponent(item.id));
+  document.title = `${item.name} — Classification CBNB`;
   const p = pathTo(item);
   const breadcrumbs = p.map((x, i) => i === p.length - 1 ? `<span>${esc(x.name)}</span>` : `<button data-select="${esc(x.id)}">${esc(x.name)}</button><span>›</span>`).join('');
-  const speciesChips = item.species.length ? item.species.map(s => `<span class="species-chip">${esc(s.name)}</span>`).join('') : '<span class="muted">Aucune espèce structurée dans les colonnes Espèce_1…Espèce_22.</span>';
-  els.detail.innerHTML = `<article class="detail"><header class="detail-head"><div class="breadcrumbs">${breadcrumbs}</div><h2>${esc(item.name)}</h2>${item.sci ? `<div class="sci">${esc(item.sci)}</div>` : ''}<div class="badges"><span class="badge rank ${rankClass(item.rank)}">${esc(item.rank)}</span><span class="badge">ID : ${esc(item.id)}</span>${item.parentId ? `<span class="badge">Parent : ${esc(item.parentId)}</span>` : '<span class="badge">racine</span>'}${item.page ? `<span class="badge">page ${esc(item.page)}</span>` : ''}${item.source ? `<span class="badge">source : ${esc(item.source)}</span>` : ''}</div><div class="detail-actions"><button class="primary" data-add-current>Ajouter au comparateur</button><button class="secondary" data-copy-link>Copier le lien fiche</button></div></header><div class="section-grid">${STATS.missingParents.includes(item.parentId) ? `<div class="notice">Parent_ID non résolu dans le CSV : <strong>${esc(item.parentId)}</strong>. La fiche reste accessible, mais son rattachement hiérarchique est incomplet.</div>` : ''}<section class="card"><h3>Description</h3><div class="text-block">${esc(item.desc || 'Description absente.')}</div></section><section class="card"><h3>Espèces botaniques citées</h3><div class="species-cloud">${speciesChips}</div>${item.speciesListed ? `<p class="footer-note"><strong>Champ source :</strong> ${esc(item.speciesListed)}</p>` : ''}</section><section class="card"><h3>Répartition géographique sommaire</h3>${renderGeoMap(item)}</section><section class="card"><h3>Positionnement sur les gradients d’Ellenberg</h3>${renderIndicatorPanel(item)}</section><section class="card"><h3>Détail espèces × indices</h3>${renderSpeciesTable(item)}</section></div></article>`;
+  const speciesChips = viewItem.species.length ? viewItem.species.map(s => `<span class="species-chip">${speciesLink(s.name)}</span>`).join('') : '';
+  const compiledNote = viewItem.compiledSpeciesFromDescendants ? `<p class="footer-note"><strong>Mode compilation :</strong> espèces du niveau sélectionné et de ses niveaux inférieurs agrégées jusqu’au rang Division.</p>` : '';
+  const cards = [];
+  if (String(item.desc || '').trim()) {
+    cards.push(`<section class="card"><h3>Description</h3><div class="text-block">${esc(item.desc)}</div></section>`);
+  }
+  if (viewItem.species.length || String(item.speciesListed || '').trim()) {
+    cards.push(`<section class="card"><h3>Espèces botaniques citées</h3><div class="species-cloud">${speciesChips || '<span class="muted">Espèces citées uniquement sous forme textuelle non structurée.</span>'}</div>${compiledNote}</section>`);
+  }
+  if (String(item.geo || '').trim()) {
+    cards.push(`<section class="card"><h3>Répartition géographique sommaire</h3>${renderGeoMap(item)}</section>`);
+  }
+  if (hasMean(viewItem)) {
+    cards.push(`<section class="card"><h3>Positionnement sur les gradients d’Ellenberg</h3>${renderIndicatorPanel(viewItem)}</section>`);
+  }
+  if (viewItem.species.length) {
+    cards.push(`<section class="card"><h3>Détail espèces × indices</h3>${renderSpeciesTable(viewItem)}</section>`);
+  }
+  const body = cards.length ? cards.join('') : '<div class="empty">Aucune information descriptive structurée disponible pour cette fiche.</div>';
+  els.detail.innerHTML = `<article class="detail"><header class="detail-head"><div class="breadcrumbs">${breadcrumbs}</div><h2>${esc(item.name)}</h2>${item.sci ? `<div class="sci">${esc(item.sci)}</div>` : ''}<div class="badges"><span class="badge rank ${rankClass(item.rank)} rank-full">Rang : ${rankLabelRich(item.rank)}</span></div><div class="detail-actions"><button class="primary" data-add-current>Ajouter au comparateur</button><button class="secondary" data-copy-link>Copier le lien fiche</button></div></header><div class="section-grid">${body}</div></article>`;
 }
 function pct(value, metric) { if (value === null || value === undefined || Number.isNaN(value)) return null; const p = ((value - metric.min) / (metric.max - metric.min)) * 100; return Math.max(0, Math.min(100, p)); }
 function renderIndicatorPanel(item) {
@@ -498,7 +605,7 @@ function renderIndicatorPanel(item) {
 function renderSpeciesTable(item) {
   if (!item.species.length) return '<div class="empty">Aucune espèce structurée disponible.</div>';
   const head = `<tr><th>Espèce</th>${METRICS.map(m => `<th class="num" title="${esc(m.label)}">${esc(m.short)}</th>`).join('')}</tr>`;
-  const body = item.species.map(s => `<tr><td><em>${esc(s.name)}</em></td>${METRICS.map(m => `<td class="num">${fmt(s.values ? s.values[m.key] : null)}</td>`).join('')}</tr>`).join('');
+  const body = item.species.map(s => `<tr><td>${speciesLink(s.name)}</td>${METRICS.map(m => `<td class="num">${fmt(s.values ? s.values[m.key] : null)}</td>`).join('')}</tr>`).join('');
   const mean = `<tr><td><strong>Moyenne végétation</strong></td>${METRICS.map(m => `<td class="num"><strong>${fmt(item.mean[m.key])}</strong></td>`).join('')}</tr>`;
   const sd = `<tr><td><strong>Écart-type</strong></td>${METRICS.map(m => `<td class="num">${fmt(item.sd[m.key])}</td>`).join('')}</tr>`;
   return `<div class="table-wrap"><table><thead>${head}</thead><tbody>${body}${mean}${sd}</tbody></table></div>`;
@@ -514,11 +621,11 @@ function renderCompareSearch() {
   els.compareSearchResults.innerHTML = matches.map(item => `<button class="result-card" data-compare-add="${esc(item.id)}"><span class="result-title">${esc(item.name)}</span><span class="meta-line"><span class="badge rank ${rankClass(item.rank)}">${esc(item.rank)}</span>${item.sci ? `<span>${esc(item.sci)}</span>` : ''}</span></button>`).join('') || '<div class="empty">Aucune fiche disponible à ajouter.</div>';
 }
 function renderCompare() {
-  saveCompareIds(); renderCompareSearch(); const items = compareIds.map(id => byId.get(id)).filter(Boolean);
+  saveCompareIds(); renderCompareSearch(); const items = compareIds.map(id => byId.get(id)).filter(Boolean).map(displayItem);
   if (!items.length) { els.comparePanel.innerHTML = `<h2 style="margin:0 0 12px;font-size:24px;">Comparateur de végétations</h2><div class="empty">Aucune végétation sélectionnée. Utilisez la recherche à gauche ou le bouton « Ajouter au comparateur » depuis une fiche.</div>`; return; }
-  const cards = items.map(item => `<article class="compare-card"><div class="compare-title">${esc(item.name)}</div>${item.sci ? `<div class="sci" style="font-size:14px;">${esc(item.sci)}</div>` : ''}<div class="badges"><span class="badge rank ${rankClass(item.rank)}">${esc(item.rank)}</span>${item.page ? `<span class="badge">p. ${esc(item.page)}</span>` : ''}<span class="badge">${item.species.length} espèce(s)</span></div><div class="compare-desc">${esc(compactText(item.desc, 420))}</div>${item.geo ? renderGeoMap(item, true) : ''}<button class="secondary" data-compare-remove="${esc(item.id)}">Retirer</button></article>`).join('');
+  const cards = items.map(item => `<article class="compare-card"><div class="compare-title">${esc(item.name)}</div>${item.sci ? `<div class="sci" style="font-size:14px;">${esc(item.sci)}</div>` : ''}<div class="badges"><span class="badge rank ${rankClass(item.rank)} rank-full">Rang : ${rankLabelRich(item.rank)}</span><span class="badge">${item.species.length} espèce(s)</span></div><div class="compare-desc">${esc(compactText(item.desc, 420))}</div>${item.geo ? renderGeoMap(item, true) : ''}<button class="secondary" data-compare-remove="${esc(item.id)}">Retirer</button></article>`).join('');
   const matrixRows = METRICS.map(m => `<tr><td>${esc(m.label)}</td>${items.map(item => { const val = item.mean[m.key]; const p = pct(val, m); return `<td><div class="num"><strong>${fmt(val)}</strong></div><div class="mini-track" style="background:${gradientStyle(m)};" aria-hidden="true">${p !== null ? `<span class="mini-mark" style="left:${p}%;"></span>` : ''}</div></td>`; }).join('')}</tr>`).join('');
-  const speciesRows = items.map(item => `<tr><td><strong>${esc(item.name)}</strong></td><td>${item.species.length ? item.species.map(s => `<em>${esc(s.name)}</em>`).join('; ') : '<span class="muted">—</span>'}</td></tr>`).join('');
+  const speciesRows = items.map(item => `<tr><td><strong>${esc(item.name)}</strong></td><td>${item.species.length ? item.species.map(s => speciesLink(s.name)).join('; ') : '<span class="muted">—</span>'}</td></tr>`).join('');
   els.comparePanel.innerHTML = `<h2 style="margin:0 0 8px;font-size:24px;">Comparateur de végétations</h2><div class="detail-actions"><button class="secondary" data-compare-clear>Vider le comparateur</button><button class="secondary" onclick="window.print()">Imprimer / PDF</button></div><div class="compare-cards">${cards}</div><section class="card"><h3>Comparaison des moyennes Ellenberg</h3><div class="table-wrap"><table class="compare-matrix"><thead><tr><th>Gradient</th>${items.map(item => `<th>${esc(item.name)}</th>`).join('')}</tr></thead><tbody>${matrixRows}</tbody></table></div></section><section class="card" style="margin-top:12px;"><h3>Espèces citées</h3><div class="table-wrap"><table><thead><tr><th>Végétation</th><th>Espèces</th></tr></thead><tbody>${speciesRows}</tbody></table></div></section>`;
 }
 function setView(view) { document.querySelectorAll('.tab-button').forEach(b => b.classList.toggle('active', b.dataset.view === view)); els.exploreView.classList.toggle('active', view === 'explore'); els.compareView.classList.toggle('active', view === 'compare'); if (view === 'compare') renderCompare(); }
@@ -526,7 +633,7 @@ let searchTimer;
 function updateSearch() { clearTimeout(searchTimer); searchTimer = setTimeout(() => { renderTree(); }, 80); }
 document.addEventListener('click', e => {
   const selectBtn = e.target.closest('[data-select]');
-  if (selectBtn) { selectedId = selectBtn.getAttribute('data-select'); expandPath(byId.get(selectedId)); renderDetail(); renderTree(); if (window.innerWidth < 981) document.getElementById('detailPanel').scrollIntoView({behavior:'smooth', block:'start'}); return; }
+  if (selectBtn) { selectedId = selectBtn.getAttribute('data-select'); expandPath(byId.get(selectedId)); renderDetail(); renderTree(); return; }
   const toggleBtn = e.target.closest('[data-toggle]');
   if (toggleBtn) { const id = toggleBtn.getAttribute('data-toggle'); expanded.has(id) ? expanded.delete(id) : expanded.add(id); renderTree(); return; }
   if (e.target.closest('[data-add-current]')) { const btn = e.target.closest('[data-add-current]'); addCompare(selectedId); const old = btn.textContent; btn.textContent = 'Ajouté au comparateur'; setTimeout(() => btn.textContent = old, 1200); return; }
